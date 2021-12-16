@@ -13,6 +13,7 @@ const Upload = () => {
       });
 
       const data = await res.json();
+      console.log([data.users]);
 
       setdata(data.users);
     } catch (error) {
@@ -24,7 +25,28 @@ const Upload = () => {
     getData();
   }, []);
 
-  return <div></div>;
+  return (
+    <div>
+      {mydata.map((val, index) => {
+        const { id, profileVideo } = val;
+        console.log(profileVideo);
+
+        return (
+          <>
+            <div className="list" key={index}>
+              <ul>
+                <li>
+                  <a href={profileVideo} target="_blank">
+                    {profileVideo}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </>
+        );
+      })}
+    </div>
+  );
 };
 
 export default Upload;
